@@ -1,0 +1,11 @@
+.card {
+
+  @extend .shadow;
+
+  background-color: $dark;
+
+  &-header {
+
+    text-align: center;
+  }
+}

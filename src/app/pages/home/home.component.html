@@ -1,0 +1,53 @@
+<main class="overflow-hidden">
+  <div>
+    <div class="row">
+      <div class="col-lg-5" @click="screenRule=false">
+        <section class="block-spacer-y board-manager">
+          <div class="container">
+            <div class="row align-items-lg-center justify-content-center">
+              <div class="col-lg-auto">
+                <h1 class="mb-1 lh-0 fw-bolder">
+                  Weather
+                  <br>
+                  news.
+                </h1>
+                <p>
+                  Get general information of your local weather with just one click!
+                </p>
+                <button class="btn text-white w-100 btn-secondary"
+                        title="Get Weather News"
+                        type="button"
+                        (click)="getClientWeatherData()"
+                        [ngClass]="disableGetWeatherNewsButton ? 'text-start d-flex align-items-center justify-content-center disabled' : ''">
+                  <ng-container *ngIf="disableGetWeatherNewsButton; else enabledButtonTemplate">
+                    Getting Lat and Long data
+                    <div class="ms-3 spinner-grow text-white" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </ng-container>
+                  <ng-template #enabledButtonTemplate>
+                    Get Weather News
+                  </ng-template>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="px-2 py-3 p-lg-0 align-self-center mx-lg-auto col-lg-5">
+        <ng-container *ngIf="(weatherData$ | async) as weatherData; else enableLocalizationTemplate">
+          <!-- <app-card-localization [city]="weatherData.name"
+                                 [country]="weatherData.sys.country" ></app-card-localization> -->
+          <app-card-weather-data [city]="weatherData.name" [country]="weatherData.sys.country" [weaherPayload]="weatherData" /> </app-card-weather-data>
+        </ng-container>
+        <ng-template #enableLocalizationTemplate>
+          <app-picture imageClass="mb-2 d-block mx-auto img-fluid"
+                       [picturePropertie]="imageBanner" />
+          <p class="text-center">
+            Please, in order to get your local weather data we need you to enable location!
+          </p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</main>

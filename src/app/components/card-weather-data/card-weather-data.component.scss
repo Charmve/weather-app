@@ -1,0 +1,33 @@
+@import "tokens/color-tokens";
+@import "frontend/breakpoint-dependencies";
+
+.card {
+
+  &-temperature {
+
+    &-number {
+
+      font-size: 3rem;
+    }
+  }
+
+  &-decorator {
+
+    position: relative;
+
+    @include media-breakpoint-down(lg) {
+
+      &:after {
+
+        content: '';
+        background-color: $info;
+        width: 50%;
+        height: 5px;
+        left: 54%;
+        bottom: -10px;
+        position: absolute;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
