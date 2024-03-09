@@ -20,6 +20,8 @@ import {CardWeatherSubtitleComponent} from "../card-weather-subtitle/card-weathe
 export class CardWeatherDataComponent {
 
   @Input({ required: true }) weaherPayload: WeatherResponsePayload;
+  @Input({ required: true }) city: string;
+  @Input({ required: true }) country: string;
 
   getCelciusTemperatureConverted(temperature: number): number {
 
